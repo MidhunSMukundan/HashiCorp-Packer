@@ -12,8 +12,8 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  access_key    = "AKIA5ECA3SPZOMCCKOTL"
-  secret_key    = "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"
+  access_key    = "xxxxxxxxxxxxxxxx"
+  secret_key    = "xxxxxxxxxxxxxxxxxx"
   ami_name      = "learn-packer-linux-aws"
   instance_type = "t2.micro"
   region        = "us-east-1"
