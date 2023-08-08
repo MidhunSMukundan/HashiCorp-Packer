@@ -1,0 +1,422 @@
+PS D:\training\Packer\packer_tutorial> packer
+Usage: packer [--version] [--help] <command> [<args>]
+
+Available commands are:
+    build           build image(s) from template
+    console         creates a console for testing variable interpolation
+    fix             fixes templates from old versions of packer
+    fmt             Rewrites HCL2 config files to canonical format
+    hcl2_upgrade    transform a JSON template into an HCL2 configuration
+    init            Install missing plugins or upgrade plugins
+    inspect         see components of a template
+    plugins         Interact with Packer plugins and catalog
+    validate        check that a template is valid
+    version         Prints the Packer version
+
+PS D:\training\Packer\packer_tutorial> packer init .
+PS D:\training\Packer\packer_tutorial> packer fmt .
+PS D:\training\Packer\packer_tutorial> packer validate .
+Error: Unsupported block type
+
+  on aws-ubuntu.pkr.hcl line 44:
+  (source code not available)
+
+Blocks of type "post-peocessor" are not expected here. Did you mean
+"post-processor"?
+
+Error: Unsupported block type
+
+  on aws-ubuntu.pkr.hcl line 45:
+  (source code not available)
+
+Blocks of type "post-peocessor" are not expected here. Did you mean
+"post-processor"?
+
+
+PS D:\training\Packer\packer_tutorial> packer validate .
+Warning: Bundled plugins used
+
+This template relies on the use of plugins bundled into the Packer binary.
+The practice of bundling external plugins into Packer will be removed in an
+upcoming version.
+
+To remove this warning, add the following section to your template:
+
+packer {
+  required_plugins {
+    amazon = {
+      source  = "github.com/hashicorp/amazon"
+      version = "~> 1"
+    }
+    vagrant = {
+      source  = "github.com/hashicorp/vagrant"
+      version = "~> 1"
+    }
+  }
+}
+
+Then run 'packer init' to manage installation of the plugins
+
+
+The configuration is valid.
+PS D:\training\Packer\packer_tutorial> packer init .    
+PS D:\training\Packer\packer_tutorial> packer fmt .     
+PS D:\training\Packer\packer_tutorial> packer validate .
+Warning: Bundled plugins used
+
+This template relies on the use of plugins bundled into the Packer binary.
+The practice of bundling external plugins into Packer will be removed in an
+upcoming version.
+
+To remove this warning, add the following section to your template:
+
+packer {
+  required_plugins {
+    amazon = {
+      source  = "github.com/hashicorp/amazon"
+      version = "~> 1"
+    }
+    vagrant = {
+      source  = "github.com/hashicorp/vagrant"
+      version = "~> 1"
+    }
+  }
+}
+
+Then run 'packer init' to manage installation of the plugins
+
+
+The configuration is valid.
+PS D:\training\Packer\packer_tutorial> ^C
+PS D:\training\Packer\packer_tutorial> packer init .    
+Installed plugin github.com/hashicorp/vagrant v1.0.3 in "C:/Users/sm/AppData/Roaming/packer.d/plugins/github.com/hashicorp/vagrant/packer-plugin-vagrant_v1.0.3_x5.0_windows_386.exe"
+PS D:\training\Packer\packer_tutorial> packer fmt .     
+aws-ubuntu.pkr.hcl
+PS D:\training\Packer\packer_tutorial> packer validate .
+The configuration is valid.
+PS D:\training\Packer\packer_tutorial> packer init .    
+PS D:\training\Packer\packer_tutorial> packer fmt .     
+PS D:\training\Packer\packer_tutorial> packer validate .
+The configuration is valid.
+PS D:\training\Packer\packer_tutorial> packer fmt .     
+aws-ubuntu.pkr.hcl
+PS D:\training\Packer\packer_tutorial> packer build .\aws-ubuntu.pkr.hcl 
+learn-packer.amazon-ebs.ubuntu: output will be in this color.
+
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating AMI Name: learn-packer-linux-aws
+==> learn-packer.amazon-ebs.ubuntu: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-053b0d53c279acc90]' does not exist
+==> learn-packer.amazon-ebs.ubuntu:     status code: 400, request id: 7be01500-dadc-435c-8c3f-72fd7e0ef850
+Build 'learn-packer.amazon-ebs.ubuntu' errored after 10 seconds 271 milliseconds: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-053b0d53c279acc90]' does not exist
+        status code: 400, request id: 7be01500-dadc-435c-8c3f-72fd7e0ef850
+
+==> Wait completed after 10 seconds 272 milliseconds
+
+==> Some builds didn't complete successfully and had errors:
+--> learn-packer.amazon-ebs.ubuntu: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-053b0d53c279acc90]' does not exist
+        status code: 400, request id: 7be01500-dadc-435c-8c3f-72fd7e0ef850
+
+==> Builds finished but no artifacts were created.
+PS D:\training\Packer\packer_tutorial> packer fmt .
+PS D:\training\Packer\packer_tutorial> packer validate .
+The configuration is valid.
+PS D:\training\Packer\packer_tutorial> packer build aws-ubuntu.pkr.hcl  
+learn-packer.amazon-ebs.ubuntu: output will be in this color.
+
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating AMI Name: learn-packer-linux-aws
+==> learn-packer.amazon-ebs.ubuntu: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-0989fb15ce71ba39e]' does not exist
+==> learn-packer.amazon-ebs.ubuntu:     status code: 400, request id: a8d77dac-336b-4386-b01c-ff1d6f41508d
+Build 'learn-packer.amazon-ebs.ubuntu' errored after 4 seconds 862 milliseconds: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-0989fb15ce71ba39e]' does not exist
+        status code: 400, request id: a8d77dac-336b-4386-b01c-ff1d6f41508d
+
+==> Wait completed after 4 seconds 862 milliseconds
+
+==> Some builds didn't complete successfully and had errors:
+--> learn-packer.amazon-ebs.ubuntu: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-0989fb15ce71ba39e]' does not exist
+        status code: 400, request id: a8d77dac-336b-4386-b01c-ff1d6f41508d
+
+==> Builds finished but no artifacts were created.
+PS D:\training\Packer\packer_tutorial> packer build aws-ubuntu.pkr.hcl
+learn-packer.amazon-ebs.ubuntu: output will be in this color.
+
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating AMI Name: learn-packer-linux-aws
+==> learn-packer.amazon-ebs.ubuntu: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-08766f81ab52792ce]' does not exist
+==> learn-packer.amazon-ebs.ubuntu:     status code: 400, request id: e3223f01-8f84-46b0-91bf-8084f99d8916
+Build 'learn-packer.amazon-ebs.ubuntu' errored after 4 seconds 789 milliseconds: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-08766f81ab52792ce]' does not exist
+        status code: 400, request id: e3223f01-8f84-46b0-91bf-8084f99d8916
+
+==> Wait completed after 4 seconds 789 milliseconds
+
+==> Some builds didn't complete successfully and had errors:
+--> learn-packer.amazon-ebs.ubuntu: Error querying AMI: InvalidAMIID.NotFound: The image id '[ami-08766f81ab52792ce]' does not exist
+        status code: 400, request id: e3223f01-8f84-46b0-91bf-8084f99d8916
+
+==> Builds finished but no artifacts were created.
+PS D:\training\Packer\packer_tutorial> ^C
+PS D:\training\Packer\packer_tutorial> packer validate .
+The configuration is valid.
+PS D:\training\Packer\packer_tutorial> packer build aws-ubuntu.pkr.hcl
+learn-packer.amazon-ebs.ubuntu: output will be in this color.
+
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating AMI Name: learn-packer-linux-aws
+    learn-packer.amazon-ebs.ubuntu: Found Image ID: ami-053b0d53c279acc90
+==> learn-packer.amazon-ebs.ubuntu: Creating temporary keypair: packer_64d22962-0ca6-0220-9b28-7af0af743ae8
+==> learn-packer.amazon-ebs.ubuntu: Creating temporary security group for this instance: packer_64d22966-2bd4-6b9d-4547-a737636dc42b
+==> learn-packer.amazon-ebs.ubuntu: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
+==> learn-packer.amazon-ebs.ubuntu: Launching a source AWS instance...
+    learn-packer.amazon-ebs.ubuntu: Instance ID: i-0421d0bfc76b41c80
+==> learn-packer.amazon-ebs.ubuntu: Waiting for instance (i-0421d0bfc76b41c80) to become ready...
+==> learn-packer.amazon-ebs.ubuntu: Using SSH communicator to connect: 3.89.220.132
+==> learn-packer.amazon-ebs.ubuntu: Waiting for SSH to become available...
+==> learn-packer.amazon-ebs.ubuntu: Connected to SSH!
+==> learn-packer.amazon-ebs.ubuntu: Provisioning with shell script: C:\Users\sm\AppData\Local\Temp\packer-shell2688746891
+==> learn-packer.amazon-ebs.ubuntu:
+==> learn-packer.amazon-ebs.ubuntu: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.        
+==> learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+    learn-packer.amazon-ebs.ubuntu: Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+    learn-packer.amazon-ebs.ubuntu: Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [658 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:5 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [153 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:6 http://security.ubuntu.com/ubuntu jammy-security/main amd64 c-n-f Metadata [11.2 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:7 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [656 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:8 http://security.ubuntu.com/ubuntu jammy-security/restricted Translation-en [104 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:9 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 c-n-f Metadata [536 B]
+    learn-packer.amazon-ebs.ubuntu: Get:10 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [769 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:11 http://security.ubuntu.com/ubuntu jammy-security/universe Translation-en [140 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:12 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 c-n-f Metadata [16.4 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:13 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [36.5 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:14 http://security.ubuntu.com/ubuntu jammy-security/multiverse Translation-en [7060 B]
+    learn-packer.amazon-ebs.ubuntu: Get:15 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 c-n-f Metadata [260 B]
+    learn-packer.amazon-ebs.ubuntu: Get:16 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [109 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:17 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]
+    learn-packer.amazon-ebs.ubuntu: Get:18 http://archive.ubuntu.com/ubuntu jammy/universe Translation-en [5652 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:19 http://archive.ubuntu.com/ubuntu jammy/universe amd64 c-n-f Metadata [286 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:20 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [217 kB]       
+    learn-packer.amazon-ebs.ubuntu: Get:21 http://archive.ubuntu.com/ubuntu jammy/multiverse Translation-en [112 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:22 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 c-n-f Metadata [8372 B]
+    learn-packer.amazon-ebs.ubuntu: Get:23 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [868 kB]     
+    learn-packer.amazon-ebs.ubuntu: Get:24 http://archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [212 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:25 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 c-n-f Metadata [15.6 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [668 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:27 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [106 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:28 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 c-n-f Metadata [536 B]
+    learn-packer.amazon-ebs.ubuntu: Get:29 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [964 kB] 
+    learn-packer.amazon-ebs.ubuntu: Get:30 http://archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [209 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:31 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 c-n-f Metadata [21.5 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [41.6 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:33 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [9768 B]
+    learn-packer.amazon-ebs.ubuntu: Get:34 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 c-n-f Metadata [476 B]
+    learn-packer.amazon-ebs.ubuntu: Get:35 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [40.8 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:36 http://archive.ubuntu.com/ubuntu jammy-backports/main Translation-en [10.2 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:37 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 c-n-f Metadata [388 B]
+    learn-packer.amazon-ebs.ubuntu: Get:38 http://archive.ubuntu.com/ubuntu jammy-backports/restricted amd64 c-n-f Metadata [116 B]
+    learn-packer.amazon-ebs.ubuntu: Get:39 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [22.3 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:40 http://archive.ubuntu.com/ubuntu jammy-backports/universe Translation-en [15.4 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:41 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 c-n-f Metadata [576 B]
+    learn-packer.amazon-ebs.ubuntu: Get:42 http://archive.ubuntu.com/ubuntu jammy-backports/multiverse amd64 c-n-f Metadata [116 B]
+==> learn-packer.amazon-ebs.ubuntu: E: Could not open file /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-updates_restricted_cnf_Commands-amd64 - open (2: No such file or directory)
+==> learn-packer.amazon-ebs.ubuntu: Traceback (most recent call last):
+==> learn-packer.amazon-ebs.ubuntu:   File "/usr/lib/cnf-update-db", line 32, in <module>
+==> learn-packer.amazon-ebs.ubuntu:     col.create(db)
+==> learn-packer.amazon-ebs.ubuntu:   File "/usr/lib/python3/dist-packages/CommandNotFound/db/creator.py", line 95, in create
+==> learn-packer.amazon-ebs.ubuntu:     self._fill_commands(con)
+==> learn-packer.amazon-ebs.ubuntu:   File "/usr/lib/python3/dist-packages/CommandNotFound/db/creator.py", line 144, in _fill_commands
+==> learn-packer.amazon-ebs.ubuntu:     raise subprocess.CalledProcessError(returncode=sub.returncode,
+    learn-packer.amazon-ebs.ubuntu: Fetched 26.5 MB in 10s (2669 kB/s)
+==> learn-packer.amazon-ebs.ubuntu: subprocess.CalledProcessError: Command '/usr/lib/apt/apt-helper cat-file /var/lib/apt/lists/archive.ubuntu.com_ubuntu_dists_jammy-updates_restricted_cnf_Commands-amd64' returned non-zero exit status 100.       
+    learn-packer.amazon-ebs.ubuntu: Reading package lists...
+==> learn-packer.amazon-ebs.ubuntu: E: Problem executing scripts APT::Update::Post-Invoke-Success 'if /usr/bin/test -w /var/lib/command-not-found/ -a -e /usr/lib/cnf-update-db; then /usr/lib/cnf-update-db > /dev/null; fi'
+==> learn-packer.amazon-ebs.ubuntu: E: Sub-process returned an error code
+==> learn-packer.amazon-ebs.ubuntu: Provisioning step had errors: Running the cleanup provisioner, if present...
+==> learn-packer.amazon-ebs.ubuntu: Terminating the source AWS instance...
+==> learn-packer.amazon-ebs.ubuntu: Cleaning up any extra volumes...
+==> learn-packer.amazon-ebs.ubuntu: No volumes to clean up, skipping
+==> learn-packer.amazon-ebs.ubuntu: Deleting temporary security group...
+==> learn-packer.amazon-ebs.ubuntu: Deleting temporary keypair...
+Build 'learn-packer.amazon-ebs.ubuntu' errored after 1 minute 39 seconds: Script exited with non-zero exit status: 100. Allowed exit codes are: [0]
+
+==> Wait completed after 1 minute 39 seconds
+
+==> Some builds didn't complete successfully and had errors:
+--> learn-packer.amazon-ebs.ubuntu: Script exited with non-zero exit status: 100. Allowed exit codes are: [0]
+
+==> Builds finished but no artifacts were created.
+
+-------#
+PS D:\training\Packer\packer_tutorial> packer fmt .     
+aws-ubuntu.pkr.hcl
+PS D:\training\Packer\packer_tutorial> packer build aws-ubuntu.pkr.hcl
+learn-packer.amazon-ebs.ubuntu: output will be in this color.
+
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> learn-packer.amazon-ebs.ubuntu: Prevalidating AMI Name: learn-packer-linux-aws
+    learn-packer.amazon-ebs.ubuntu: Found Image ID: ami-053b0d53c279acc90
+==> learn-packer.amazon-ebs.ubuntu: Creating temporary keypair: packer_64d22b74-f63e-c68a-6fe7-ff448a9e6bf5
+==> learn-packer.amazon-ebs.ubuntu: Creating temporary security group for this instance: packer_64d22b78-10ed-296c-a961-625a08d6fb85
+==> learn-packer.amazon-ebs.ubuntu: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
+==> learn-packer.amazon-ebs.ubuntu: Launching a source AWS instance...
+    learn-packer.amazon-ebs.ubuntu: Instance ID: i-0501259ddce1b8b36
+==> learn-packer.amazon-ebs.ubuntu: Waiting for instance (i-0501259ddce1b8b36) to become ready...
+==> learn-packer.amazon-ebs.ubuntu: Using SSH communicator to connect: 3.82.115.158
+==> learn-packer.amazon-ebs.ubuntu: Waiting for SSH to become available...
+==> learn-packer.amazon-ebs.ubuntu: Connected to SSH!
+==> learn-packer.amazon-ebs.ubuntu: Provisioning with shell script: C:\Users\sm\AppData\Local\Temp\packer-shell800201781
+==> learn-packer.amazon-ebs.ubuntu:
+==> learn-packer.amazon-ebs.ubuntu: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+==> learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+    learn-packer.amazon-ebs.ubuntu: Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+    learn-packer.amazon-ebs.ubuntu: Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [658 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:5 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [153 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:6 http://security.ubuntu.com/ubuntu jammy-security/main amd64 c-n-f Metadata [11.2 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:7 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [656 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:8 http://security.ubuntu.com/ubuntu jammy-security/restricted Translation-en [104 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:9 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 c-n-f Metadata [536 B]     
+    learn-packer.amazon-ebs.ubuntu: Get:10 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [769 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:11 http://security.ubuntu.com/ubuntu jammy-security/universe Translation-en [140 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:12 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 c-n-f Metadata [16.4 kB]    
+    learn-packer.amazon-ebs.ubuntu: Get:13 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [36.5 kB]        
+    learn-packer.amazon-ebs.ubuntu: Get:14 http://security.ubuntu.com/ubuntu jammy-security/multiverse Translation-en [7060 B]
+    learn-packer.amazon-ebs.ubuntu: Get:15 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 c-n-f Metadata [260 B]
+    learn-packer.amazon-ebs.ubuntu: Get:16 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [109 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:17 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]
+    learn-packer.amazon-ebs.ubuntu: Get:18 http://archive.ubuntu.com/ubuntu jammy/universe Translation-en [5652 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:19 http://archive.ubuntu.com/ubuntu jammy/universe amd64 c-n-f Metadata [286 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:20 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [217 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:21 http://archive.ubuntu.com/ubuntu jammy/multiverse Translation-en [112 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:22 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 c-n-f Metadata [8372 B]
+    learn-packer.amazon-ebs.ubuntu: Get:23 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [868 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:24 http://archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [212 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:25 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 c-n-f Metadata [15.6 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [668 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:27 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [106 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:28 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 c-n-f Metadata [536 B]      
+    learn-packer.amazon-ebs.ubuntu: Get:29 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [964 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:30 http://archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [209 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:31 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 c-n-f Metadata [21.5 kB]      
+    learn-packer.amazon-ebs.ubuntu: Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [41.6 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:33 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [9768 B]
+    learn-packer.amazon-ebs.ubuntu: Get:34 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 c-n-f Metadata [476 B]      
+    learn-packer.amazon-ebs.ubuntu: Get:35 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [40.8 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:36 http://archive.ubuntu.com/ubuntu jammy-backports/main Translation-en [10.2 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:37 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 c-n-f Metadata [388 B]
+    learn-packer.amazon-ebs.ubuntu: Get:38 http://archive.ubuntu.com/ubuntu jammy-backports/restricted amd64 c-n-f Metadata [116 B]    
+    learn-packer.amazon-ebs.ubuntu: Get:39 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [22.3 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:40 http://archive.ubuntu.com/ubuntu jammy-backports/universe Translation-en [15.4 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:41 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 c-n-f Metadata [576 B]
+    learn-packer.amazon-ebs.ubuntu: Get:42 http://archive.ubuntu.com/ubuntu jammy-backports/multiverse amd64 c-n-f Metadata [116 B]
+    learn-packer.amazon-ebs.ubuntu: Fetched 26.5 MB in 9s (2978 kB/s)
+    learn-packer.amazon-ebs.ubuntu: Reading package lists...
+    learn-packer.amazon-ebs.ubuntu: Building dependency tree...
+    learn-packer.amazon-ebs.ubuntu: Reading state information...
+    learn-packer.amazon-ebs.ubuntu: 107 packages can be upgraded. Run 'apt list --upgradable' to see them.
+==> learn-packer.amazon-ebs.ubuntu:
+==> learn-packer.amazon-ebs.ubuntu: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+==> learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: Reading package lists...
+    learn-packer.amazon-ebs.ubuntu: Building dependency tree...
+    learn-packer.amazon-ebs.ubuntu: Reading state information...
+    learn-packer.amazon-ebs.ubuntu: The following additional packages will be installed:
+    learn-packer.amazon-ebs.ubuntu:   libnginx-mod-http-echo libnginx-mod-http-geoip2 nginx-common nginx-light
+    learn-packer.amazon-ebs.ubuntu: Suggested packages:
+    learn-packer.amazon-ebs.ubuntu:   fcgiwrap nginx-doc ssl-cert
+    learn-packer.amazon-ebs.ubuntu: The following NEW packages will be installed:
+    learn-packer.amazon-ebs.ubuntu:   libnginx-mod-http-echo libnginx-mod-http-geoip2 nginx nginx-common
+    learn-packer.amazon-ebs.ubuntu:   nginx-light
+    learn-packer.amazon-ebs.ubuntu: 0 upgraded, 5 newly installed, 0 to remove and 60 not upgraded.
+    learn-packer.amazon-ebs.ubuntu: Need to get 535 kB of archives.
+    learn-packer.amazon-ebs.ubuntu: After this operation, 1755 kB of additional disk space will be used.
+    learn-packer.amazon-ebs.ubuntu: Get:1 http://security.ubuntu.com/ubuntu jammy-security/main amd64 nginx-common all 1.18.0-6ubuntu14.3 [40.0 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:2 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 libnginx-mod-http-echo amd64 1.18.0-6ubuntu14.3 [22.7 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:3 http://security.ubuntu.com/ubuntu jammy-security/main amd64 libnginx-mod-http-geoip2 amd64 1.18.0-6ubuntu14.3 [11.9 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:4 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 nginx-light amd64 1.18.0-6ubuntu14.3 [457 kB]
+    learn-packer.amazon-ebs.ubuntu: Get:5 http://security.ubuntu.com/ubuntu jammy-security/main amd64 nginx amd64 1.18.0-6ubuntu14.3 [3882 B]
+==> learn-packer.amazon-ebs.ubuntu: debconf: unable to initialize frontend: Dialog
+==> learn-packer.amazon-ebs.ubuntu: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+==> learn-packer.amazon-ebs.ubuntu: debconf: falling back to frontend: Readline
+==> learn-packer.amazon-ebs.ubuntu: debconf: unable to initialize frontend: Readline
+==> learn-packer.amazon-ebs.ubuntu: debconf: (This frontend requires a controlling tty.)
+==> learn-packer.amazon-ebs.ubuntu: debconf: falling back to frontend: Teletype
+==> learn-packer.amazon-ebs.ubuntu: dpkg-preconfigure: unable to re-open stdin:
+    learn-packer.amazon-ebs.ubuntu: Fetched 535 kB in 0s (4531 kB/s)
+    learn-packer.amazon-ebs.ubuntu: Selecting previously unselected package nginx-common.
+    learn-packer.amazon-ebs.ubuntu: (Reading database ... 64295 files and directories currently installed.)
+    learn-packer.amazon-ebs.ubuntu: Preparing to unpack .../nginx-common_1.18.0-6ubuntu14.3_all.deb ...
+    learn-packer.amazon-ebs.ubuntu: Unpacking nginx-common (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Selecting previously unselected package libnginx-mod-http-echo.
+    learn-packer.amazon-ebs.ubuntu: Preparing to unpack .../libnginx-mod-http-echo_1.18.0-6ubuntu14.3_amd64.deb ...
+    learn-packer.amazon-ebs.ubuntu: Unpacking libnginx-mod-http-echo (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Selecting previously unselected package libnginx-mod-http-geoip2.
+    learn-packer.amazon-ebs.ubuntu: Preparing to unpack .../libnginx-mod-http-geoip2_1.18.0-6ubuntu14.3_amd64.deb ...
+    learn-packer.amazon-ebs.ubuntu: Unpacking libnginx-mod-http-geoip2 (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Selecting previously unselected package nginx-light.
+    learn-packer.amazon-ebs.ubuntu: Preparing to unpack .../nginx-light_1.18.0-6ubuntu14.3_amd64.deb ...
+    learn-packer.amazon-ebs.ubuntu: Unpacking nginx-light (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Selecting previously unselected package nginx.
+    learn-packer.amazon-ebs.ubuntu: Preparing to unpack .../nginx_1.18.0-6ubuntu14.3_amd64.deb ...
+    learn-packer.amazon-ebs.ubuntu: Unpacking nginx (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Setting up nginx-common (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: debconf: unable to initialize frontend: Dialog
+    learn-packer.amazon-ebs.ubuntu: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+    learn-packer.amazon-ebs.ubuntu: debconf: falling back to frontend: Readline
+    learn-packer.amazon-ebs.ubuntu: Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+    learn-packer.amazon-ebs.ubuntu: Setting up libnginx-mod-http-echo (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Setting up libnginx-mod-http-geoip2 (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Setting up nginx-light (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu:  * Upgrading binary nginx
+    learn-packer.amazon-ebs.ubuntu:    ...done.
+    learn-packer.amazon-ebs.ubuntu: Setting up nginx (1.18.0-6ubuntu14.3) ...
+    learn-packer.amazon-ebs.ubuntu: Processing triggers for man-db (2.10.2-1) ...
+    learn-packer.amazon-ebs.ubuntu: Processing triggers for ufw (0.36.1-4build1) ...
+    learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: Running kernel seems to be up-to-date.
+    learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: No services need to be restarted.
+    learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: No containers need to be restarted.
+    learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: No user sessions are running outdated binaries.
+    learn-packer.amazon-ebs.ubuntu:
+    learn-packer.amazon-ebs.ubuntu: No VM guests are running outdated hypervisor (qemu) binaries on this host.
+==> learn-packer.amazon-ebs.ubuntu: Synchronizing state of nginx.service with SysV service script with /lib/systemd/systemd-sysv-install.
+==> learn-packer.amazon-ebs.ubuntu: Executing: /lib/systemd/systemd-sysv-install enable nginx
+    learn-packer.amazon-ebs.ubuntu: Rules updated
+    learn-packer.amazon-ebs.ubuntu: Rules updated (v6)
+    learn-packer.amazon-ebs.ubuntu: Command may disrupt existing ssh connections. Proceed with operation (y|n)? Firewall is active and enabled on system startup
+==> learn-packer.amazon-ebs.ubuntu: Stopping the source instance...
+    learn-packer.amazon-ebs.ubuntu: Stopping instance
+==> learn-packer.amazon-ebs.ubuntu: Waiting for the instance to stop...
+==> learn-packer.amazon-ebs.ubuntu: Creating AMI learn-packer-linux-aws from instance i-0501259ddce1b8b36
+    learn-packer.amazon-ebs.ubuntu: AMI: ami-0dca84fb4842000ea
+==> learn-packer.amazon-ebs.ubuntu: Waiting for AMI to become ready...
+==> learn-packer.amazon-ebs.ubuntu: Skipping Enable AMI deprecation...
+==> learn-packer.amazon-ebs.ubuntu: Terminating the source AWS instance...
+==> learn-packer.amazon-ebs.ubuntu: Cleaning up any extra volumes...
+==> learn-packer.amazon-ebs.ubuntu: No volumes to clean up, skipping
+==> learn-packer.amazon-ebs.ubuntu: Deleting temporary security group...
+==> learn-packer.amazon-ebs.ubuntu: Deleting temporary keypair...
+==> learn-packer.amazon-ebs.ubuntu: Running post-processor:  (type vagrant)
+==> learn-packer.amazon-ebs.ubuntu (vagrant): Creating a dummy Vagrant box to ensure the host system can create one correctly
+==> learn-packer.amazon-ebs.ubuntu (vagrant): Creating Vagrant box for 'aws' provider
+    learn-packer.amazon-ebs.ubuntu (vagrant): Compressing: Vagrantfile
+    learn-packer.amazon-ebs.ubuntu (vagrant): Compressing: metadata.json
+==> learn-packer.amazon-ebs.ubuntu: Running post-processor:  (type compress)
+==> learn-packer.amazon-ebs.ubuntu (compress): Using pgzip compression with 4 cores for packer_ubuntu_amazon-ebs
+==> learn-packer.amazon-ebs.ubuntu (compress): Tarring packer_ubuntu_amazon-ebs with pgzip
+==> learn-packer.amazon-ebs.ubuntu (compress): Archive packer_ubuntu_amazon-ebs completed
+Build 'learn-packer.amazon-ebs.ubuntu' finished after 3 minutes 50 seconds.
+
+==> Wait completed after 3 minutes 50 seconds
+
+==> Builds finished. The artifacts of successful builds are:
+--> learn-packer.amazon-ebs.ubuntu: AMIs were created:
+us-east-1: ami-0dca84fb4842000ea
+
+--> learn-packer.amazon-ebs.ubuntu: 'aws' provider box: packer_ubuntu_aws.box
+--> learn-packer.amazon-ebs.ubuntu: compressed artifacts in: packer_ubuntu_amazon-ebs
+PS D:\training\Packer\packer_tutorial> 
